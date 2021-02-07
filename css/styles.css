@@ -7,9 +7,24 @@ h1{
 button{
     width: 6rem;
     font-size: 1rem;
-    
+
+}
+
+.main{
+    margin: 3rem 2rem 0 3rem;
 }
 
 .btn-container{
-    margin: 1rem 0 0 1rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.library{
+    display: grid;
+    grid-template-columns: 2fr repeat(3,1fr);
+    grid-auto-rows: 25px;
+    grid-template-areas: "title author pages rating";
+    /* margin: 0.5rem 2rem 0 2rem; */
+    border: 1px solid black;
 }
