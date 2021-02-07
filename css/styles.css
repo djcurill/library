@@ -16,8 +16,8 @@ button{
 
 .row{
     display: grid;
-    grid-template-columns: 2fr repeat(3,1fr);
-    grid-template-areas: "title author pages rating";
+    grid-template-columns: 2fr repeat(4,1fr);
+    grid-template-areas: "title author pages read rating";
     align-items: center;
     padding-left: 1rem;
 }
