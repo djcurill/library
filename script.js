@@ -1,11 +1,22 @@
 let library = [];
 const tbl = document.querySelector("div.table");
+const addBtn = document.querySelector("button.add");
 
-function Book(title, author, pages, rating=null, read=false){
+addBtn.addEventListener("click",toggleModal);
+
+function toggleModal() {
+    document.querySelector("div.overlay").classList.toggle("overlay--hidden");
+    document.querySelector("div.modal").classList.toggle("modal--hidden");
+}
+
+
+
+
+
+function Book(title, author, pages, read=false){
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.rating  = rating;
     this.read = read;
 }
 
