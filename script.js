@@ -9,10 +9,6 @@ function toggleModal() {
     document.querySelector("div.modal").classList.toggle("modal--hidden");
 }
 
-
-
-
-
 function Book(title, author, pages, read=false){
     this.title = title;
     this.author = author;

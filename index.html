@@ -25,17 +25,25 @@
 
     <div class = "overlay overlay--hidden">
         <div class="modal modal--hidden">
+
             <div class="modal__content">
-                <form>
-                    <label for="title">Title: </label>
-                    <input type="text" id="title" for="title"><br>
-                    <label for="author">Author: </label>
-                    <input type="text" id="author" for="author"><br>
-                    <label for="pages">Pages: </label>
-                    <input type="number" id="pages" for="pages" min=1><br>
-                    <label for="read">Read: </label>
-                    <input type="checkbox" id="read" for="read"><br>
+                <div class="modal__header">
+                    <div class="modal__close-btn">X</div>
+                </div>
+                <form class="modal__form">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" for="title">
+
+                    <label for="author">Author</label>
+                    <input type="text" id="author" for="author">
+
+                    <label for="pages">Pages</label>
+                    <input type="number" id="pages" for="pages">
+
+                    <label for="read">Read</label>
+                    <input type="checkbox" id="read" for="read">
                 </form>
+                <div class="modal__submit-btn">Add Book</div>
             </div>
         </div>
     </div>

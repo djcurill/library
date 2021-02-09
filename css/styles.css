@@ -59,8 +59,52 @@ button{
 }
 
 .modal__content{
-    width: 250px;
-    height: 300px;
-    /* padding: 2rem; */
+    width: 350px;
     background-color: white;
+}
+
+.modal__form{
+    margin-top: 1.5rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+    padding: 2rem;
+}
+
+.modal__title{
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+    clear: both;
+}
+
+.modal__close-btn{
+    float: right;
+    padding: 7px 8px;
+    background-color: rgb(199, 53, 53);
+    cursor: pointer;
+}
+
+.modal__close-btn:hover{
+    background-color: rgb(215, 117, 117);
+}
+
+.modal__submit-btn{
+    text-align: center;
+    padding: 0.5rem 0 0.5rem 0;
+    background-color: rgb(56, 56, 196);
+    color: white;
+}
+
+input{
+    margin: 0.5rem 1rem;
+}
+
+input[type=text],
+input[type=number]{
+    width: 90%;
+}
+
+input[type=checkbox]{
+    justify-self: start;
 }
