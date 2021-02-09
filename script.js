@@ -6,11 +6,16 @@ const form = document.querySelector("form.modal__form");
 
 addBtn.addEventListener("click",toggleModal);
 clsBtn.addEventListener("click",toggleModal);
+form.addEventListener("submit",submitBook);
 
 function toggleModal() {
     document.querySelector("div.overlay").classList.toggle("overlay--hidden");
     document.querySelector("div.modal").classList.toggle("modal--hidden");
     form.reset();
+}
+
+function submitBook(event){
+    console.log(form);
 }
 
 
