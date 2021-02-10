@@ -2,11 +2,12 @@ let library = [];
 const tbl = document.querySelector("div.table");
 const addBtn = document.querySelector("button.add");
 const clsBtn = document.querySelector("div.modal__close-btn");
-const form = document.querySelector("form.modal__form");
+const form = document.querySelector("form");
+const submit = document.querySelector("div.modal__submit-btn");
 
 addBtn.addEventListener("click",toggleModal);
 clsBtn.addEventListener("click",toggleModal);
-form.addEventListener("submit",submitBook);
+form.addEventListener("submit",toggleModal);
 
 function toggleModal() {
     document.querySelector("div.overlay").classList.toggle("overlay--hidden");
@@ -14,9 +15,25 @@ function toggleModal() {
     form.reset();
 }
 
-function submitBook(event){
-    console.log(form);
+function getBookInfo(){
+    let title = document.querySelector("#title").value;
+    let author = document.querySelector("#author").value;
+    let pages = document.querySelector("#pages").value;
+    let read = document.querySelector("#read").checked
+    return new Book(title,author,pages,read=read);
 }
+
+// function submitBook(event){
+//     let input = form.elements;
+//     console.log(input);
+//     book = new Book(input.title.value,
+//                     input.author.value,
+//                     input.pages.value,
+//                     input.read.value);
+//     addBookToLibrary(book);
+//     displayBook(book);
+//     toggleModal();
+// }
 
 
 function Book(title, author, pages, read=false){
@@ -49,12 +66,4 @@ function createRow(book){
 function displayBook(book){
     tbl.appendChild(createRow(book));
 }
-
-function displayLibrary(){
-    library.map(displayBook);
-}
-
-addBookToLibrary(new Book("harry potter","rowling","250"));
-addBookToLibrary(new Book("lord of the rings","tolkien","1000"));
-displayLibrary();
 
