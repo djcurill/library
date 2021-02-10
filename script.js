@@ -3,11 +3,10 @@ const tbl = document.querySelector("div.table");
 const addBtn = document.querySelector("button.add");
 const clsBtn = document.querySelector("div.modal__close-btn");
 const form = document.querySelector("form");
-const submit = document.querySelector("div.modal__submit-btn");
 
 addBtn.addEventListener("click",toggleModal);
 clsBtn.addEventListener("click",toggleModal);
-form.addEventListener("submit",toggleModal);
+form.addEventListener("submit",e => submitBook(e));
 
 function toggleModal() {
     document.querySelector("div.overlay").classList.toggle("overlay--hidden");
@@ -23,17 +22,14 @@ function getBookInfo(){
     return new Book(title,author,pages,read=read);
 }
 
-// function submitBook(event){
-//     let input = form.elements;
-//     console.log(input);
-//     book = new Book(input.title.value,
-//                     input.author.value,
-//                     input.pages.value,
-//                     input.read.value);
-//     addBookToLibrary(book);
-//     displayBook(book);
-//     toggleModal();
-// }
+function submitBook(event){
+    event.preventDefault(); // prevent page refresh after form submit
+    
+    let book = getBookInfo();
+    addBookToLibrary(book);
+    displayBook(book);
+    toggleModal();
+}
 
 
 function Book(title, author, pages, read=false){
