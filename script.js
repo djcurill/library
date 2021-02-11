@@ -45,6 +45,7 @@ function addBookToLibrary(book){
 }
 
 function createCell(entry){
+    // Creates an entry within a row
     let [key,value] = entry;
     let cell = document.createElement("div");
     cell.style.gridArea = key;
@@ -53,6 +54,7 @@ function createCell(entry){
 }
 
 function createRow(book){
+    // Creates a row within a table
     let row = document.createElement("div");
     let cells = Object.entries(book).map(createCell);
     cells.forEach(cell => row.appendChild(cell));
@@ -65,10 +67,6 @@ function createRow(book){
 
 function displayBook(book){
     tbl.appendChild(createRow(book));
-}
-
-function displayLibrary(){
-
 }
 
 function createRemoveBtn(key){
@@ -85,4 +83,3 @@ function removeBook(event){
     library = library.filter(book => book.title !== removeTitle);
     tbl.removeChild(document.querySelector(`div.row[data-key="${removeTitle}"]`));
 }
-
