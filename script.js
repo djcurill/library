@@ -1,6 +1,6 @@
 let library = [];
 const tbl = document.querySelector("div.table");
-const addBtn = document.querySelector("button.add");
+const addBtn = document.querySelector("button.add-btn");
 const clsBtn = document.querySelector("div.modal__close-btn");
 const form = document.querySelector("form");
 
@@ -11,6 +11,7 @@ form.addEventListener("submit",e => submitBook(e));
 function toggleModal() {
     document.querySelector("div.overlay").classList.toggle("overlay--hidden");
     document.querySelector("div.modal").classList.toggle("modal--hidden");
+    document.querySelector("div.viewport").classList.toggle("viewport--blur");
     form.reset();
 }
 
@@ -55,11 +56,33 @@ function createRow(book){
     let row = document.createElement("div");
     let cells = Object.entries(book).map(createCell);
     cells.forEach(cell => row.appendChild(cell));
+    row.appendChild(createRemoveBtn(book.title));
     row.classList.add("row");
+    row.classList.add("entry");
+    row.setAttribute("data-key",book.title);
     return row;
 }
 
 function displayBook(book){
     tbl.appendChild(createRow(book));
+}
+
+function displayLibrary(){
+
+}
+
+function createRemoveBtn(key){
+    let btn = document.createElement("button");
+    btn.textContent = "REMOVE";
+    btn.classList.add("remove-btn");
+    btn.setAttribute("data-key",key);
+    btn.addEventListener("click",removeBook);
+    return btn;
+}
+
+function removeBook(event){
+    let removeTitle = event.target.getAttribute("data-key");
+    library = library.filter(book => book.title !== removeTitle);
+    tbl.removeChild(document.querySelector(`div.row[data-key="${removeTitle}"]`));
 }
 
