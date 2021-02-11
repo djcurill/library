@@ -40,6 +40,10 @@ function Book(title, author, pages, read=false){
     this.read = read;
 }
 
+Book.prototype.toggleRead = function(){
+    this.read = (this.read === false) ? true : false;
+}
+
 function addBookToLibrary(book){
     library.push(book);
 }
@@ -49,24 +53,42 @@ function createCell(entry){
     let [key,value] = entry;
     let cell = document.createElement("div");
     cell.style.gridArea = key;
-    cell.textContent = value;
+
+    if (key === "read"){
+        cell.appendChild(createToggle(value));
+    }
+    else {
+        cell.textContent = value;
+    }
     return cell;
 }
 
 function createRow(book){
     // Creates a row within a table
     let row = document.createElement("div");
-    let cells = Object.entries(book).map(createCell);
-    cells.forEach(cell => row.appendChild(cell));
+
+    for (const key of Object.keys(book)){
+        let cell = document.createElement("div");
+        cell.style.gridArea = key;
+
+        if (key === "read"){
+            cell.appendChild(createToggle(book));
+        }
+        else {
+            cell.textContent = book[key];
+        }
+        row.appendChild(cell);
+    }
     row.appendChild(createRemoveBtn(book.title));
-    row.classList.add("row");
-    row.classList.add("entry");
-    row.setAttribute("data-key",book.title);
     return row;
 }
 
 function displayBook(book){
-    tbl.appendChild(createRow(book));
+    let row = createRow(book);
+    row.classList.add("row");
+    row.classList.add("entry");
+    row.setAttribute("data-key",book.title);
+    tbl.appendChild(row);
 }
 
 function createRemoveBtn(key){
@@ -78,8 +100,23 @@ function createRemoveBtn(key){
     return btn;
 }
 
+function createToggle(book){
+    let toggle = document.createElement("input");
+    toggle.checked = book.read;
+    toggle.setAttribute("type","checkbox");
+    toggle.setAttribute("data-key",book.title);
+    toggle.addEventListener("click",changeReadStatus);
+    return toggle;
+}
+
+function changeReadStatus(event){
+    let idTitle = event.target.getAttribute("data-key");
+    library.forEach(book => {if (book.title === idTitle) (book.toggleRead())});
+}
+
 function removeBook(event){
     let removeTitle = event.target.getAttribute("data-key");
     library = library.filter(book => book.title !== removeTitle);
     tbl.removeChild(document.querySelector(`div.row[data-key="${removeTitle}"]`));
 }
+
